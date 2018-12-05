@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-
-
 let arrDataClaims = [];
 let fabric = [];
 

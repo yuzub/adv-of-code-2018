@@ -1,0 +1,34 @@
+сколько задач в temp
+
+1 назначаем work1
+2 назначаем work2
+3 назначаем work3
+4 назначаем work4
+5 назначаем work5
+6  и более ждем пока появится свободный work
+
+
+temp.length <= 5
+free = [w1, w2, w3, w4, w5]
+
+c w1 1-63   a w1 63+ 1-61   
+            f w2 63+ 1-66   
+
+while (firsts.length > 0) {
+
+      for (let ind = 0; ind < firsts.length; ind++) {
+        const step = firsts[ind];
+        if (temp.includes(step)) {
+          continue;
+        }
+        else if (!seconds.includes(step)) {
+          temp.push(step);
+        }
+      }
+
+      
+
+
+
+
+}

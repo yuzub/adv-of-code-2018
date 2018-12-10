@@ -18,28 +18,21 @@ function strategy() {
         if (!arrOfStrings[arrOfStrings.length - 1]) {
             arrOfStrings.splice(-1, 1);
         }
-        // console.log(arrOfStrings);
 
         arrOfStrings.forEach(element => {
             arrObjs.push(parseInputData(element));
         });
-        // console.log(arrObjs);
         arrObjs.sort( (a, b) => a.ms - b.ms );
-        // console.log(arrObjs);
         arrGuards = countSleepTime(arrObjs);
-        // arrGuards.forEach( (el, i) => console.log(i, el) );
 
         maxSleepGuard = searchMaxElement(arrGuards);
-        console.log('-------------------------------------------------------------------------------------------------');
-        console.log(`The guard with #id = ${maxSleepGuard.i} has the most minutes asleep = ${maxSleepGuard.max} minutes`);
+        console.log('-------------PART 1-------------');
+        // console.log(`The guard with #id = ${maxSleepGuard.i} has the most minutes asleep = ${maxSleepGuard.max} minutes`);
 
         mostSleepMinute = buildSleepSchedule(maxSleepGuard, arrObjs);
-        console.log(`That guard spend asleep ${mostSleepMinute.max} times in ${mostSleepMinute.i} minute`);
-        console.log('-------------------------------------------------------------------------------------------------');
+        // console.log(`That guard spend asleep ${mostSleepMinute.max} times in ${mostSleepMinute.i} minute`);
         result1 = maxSleepGuard.i * mostSleepMinute.i;
         console.log(`Result 1 = ${result1}`);
-        console.log('-------------------------------------------------------------------------------------------------');
-        console.log();
 
         arrGuards = buildSleepSchedules(arrObjs);
         let minute = {guardID: -1, slMin: 0, slTimes: 0};
@@ -48,7 +41,7 @@ function strategy() {
             mostSlMin = searchMaxElement(guard.slShed);
             guard.mostSlMin = mostSlMin.i;
             guard.slTimes = mostSlMin.max;
-            console.log(`Guard #ID = ${id}, slTime = ${guard.slTime}, mostSlMin = ${guard.mostSlMin}, slTimes = ${guard.slTimes}`);
+            // console.log(`Guard #ID = ${id}, slTime = ${guard.slTime}, mostSlMin = ${guard.mostSlMin}, slTimes = ${guard.slTimes}`);
 
             if (guard.slTimes > minute.slTimes) {
                 minute.guardID = id;
@@ -57,13 +50,11 @@ function strategy() {
             }
         });
 
-        console.log(`The guard with #ID = ${minute.guardID} is most frequently (${minute.slTimes} times) asleep on the same minute = ${minute.slMin}`);
-
-        console.log('-------------------------------------------------------------------------------------------------');
+        
+        console.log('-------------PART 2-------------');
+        // console.log(`The guard with #ID = ${minute.guardID} is most frequently (${minute.slTimes} times) asleep on the same minute = ${minute.slMin}`);
         result2 = minute.guardID * minute.slMin;
         console.log(`Result 2 = ${result2}`);
-        console.log('-------------------------------------------------------------------------------------------------');
-
 
     });
 }
@@ -121,7 +112,6 @@ function buildSleepSchedule(guard, arr) {
         if (id === guard.i && desc[0] === 'w') {
             const tsSleep = new Date(arr[i - 1].ms).getMinutes();
             const tsWake = new Date(arr[i].ms).getMinutes();
-            // console.log(id,  arr[i].ms, tsSleep, tsWake);
             for (let j = tsSleep; j < tsWake; j++) {
                 sleepSchedule[j] = (sleepSchedule[j] || 0) + 1;
             }
@@ -157,6 +147,5 @@ function buildSleepSchedules(arr) {
     return guards;
 }
 
-// guards[id] = [{ slTime: slTime, slShed: slShed , mostSlMin: mSlMin, slTimes: slTimes }, {  }]
 
 strategy();
